@@ -1,0 +1,63 @@
+#footer {
+    background-color: #f4f4f4;
+    padding: 50px 0;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    p,
+    address {
+        font-style: normal;
+        font-size: 14px;
+    }
+
+    .social {
+        display: flex;
+        height: 30px;
+        column-gap: 5px;
+
+        a {
+            transition: all 0.1s linear 0.1s;
+        }
+
+        a:hover svg {
+            transform: scale(95%);
+        }
+
+        a:hover {
+            transform: scale(105%);
+        }
+
+        svg {
+            height: 100%;
+            transition: @transition;
+
+            .bg {
+                fill: @primary-color;
+                transition: @transition;
+            }
+        }
+
+        [href*="facebook"]:hover .bg {
+            fill: #395498;
+        }
+
+        [href*="instagram"]:hover .bg {
+            fill: #C42E7F;
+        }
+
+        [href*="whatsapp"]:hover .bg {
+            fill: #43BF53;
+        }
+
+        [href*="linkedin"]:hover .bg {
+            fill: #0073B1;
+        }
+
+        [href*="twitter"]:hover .bg {
+            fill: #29A4D9;
+        }
+    }
+}
