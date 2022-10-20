@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;700;800&display=swap');
 @import url('./var.less');
 @import url('./header.less');
 @import url('./footer.less');
@@ -134,52 +134,9 @@ section {
     }
 }
 
-#banner {
-    line-height: 0;
-    background: url('../img/banner_1.jpg') bottom center fixed;
-    background-size: cover;
-    padding-bottom: 0;
-}
-
-#about {
-
-    p+p {
-        margin-top: 15px;
-    }
-}
-
-#services {
-    background: #fff;
-
-    svg {
-        width: 70px;
-    }
-
-    path {
-        fill: @primary-color;
-    }
-
-    h3 {
-        color: @primary-color;
-        margin: 5px 0 0;
-    }
-
-    .service+.service {
-        margin-top: 30px;
-    }
-}
-
 #projects {
     position: relative;
     background-color: #f4f4f4;
-
-    h2 {
-        color: #fff;
-        position: absolute;
-        top: 50px;
-        width: 100%;
-        z-index: 1;
-    }
 
     .tns-nav {
         bottom: 20px;
@@ -201,6 +158,27 @@ section {
         .tns-nav-active:hover {
             background-color: @primary-color;
         }
+    }
+}
+
+#services {
+    background: #fff;
+
+    svg {
+        width: 70px;
+    }
+
+    path {
+        fill: @primary-color;
+    }
+
+    h3 {
+        color: @primary-color;
+        margin: 5px 0 0;
+    }
+
+    .service+.service {
+        margin-top: 30px;
     }
 }
 
@@ -250,6 +228,13 @@ section {
         .tns-nav-active:hover {
             background-color: #fff;
         }
+    }
+}
+
+#about {
+
+    p+p {
+        margin-top: 15px;
     }
 }
 
