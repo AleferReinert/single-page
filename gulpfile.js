@@ -22,7 +22,7 @@ function concat(cb) {
     cb();
 }
 
-function uglify(db) {
+function uglify(cb) {
     const gulp_uglify = require('gulp-uglify');
 
     return src('./assets/js/min/*.js')
@@ -42,7 +42,7 @@ function minifyCSS(cb) {
 
 function watchFiles() {
     watch('./assets/less/*.less', less);
-    watch('./assets/js/*.js', concat);
+    watch('./assets/js/*.js', concat, uglify);
 }
 
 exports.default = series(watchFiles);

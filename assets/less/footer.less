@@ -1,11 +1,6 @@
 #footer {
     background-color: #f4f4f4;
-    padding: 50px 0;
-
-    .container {
-        display: flex;
-        justify-content: space-between;
-    }
+    text-align: center;
 
     p,
     address {
@@ -14,12 +9,15 @@
     }
 
     .social {
-        display: flex;
         height: 30px;
-        column-gap: 5px;
 
         a {
             transition: all 0.1s linear 0.1s;
+            font-size: 0;
+
+            + a {
+                margin-left: 5px;
+            }
         }
 
         a:hover svg {
@@ -58,6 +56,28 @@
 
         [href*="twitter"]:hover .bg {
             fill: #29A4D9;
+        }
+    }
+
+    .address {
+        padding: 25px 0;
+    }
+}
+
+@media all and (min-width: @breakpoint-lg) {
+    #footer {
+        padding: 25px 0;
+        text-align: left;
+
+        .container {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .address {
+            padding: 0;
         }
     }
 }

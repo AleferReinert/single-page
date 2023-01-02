@@ -1,13 +1,6 @@
 window.onload = function () {
     'use strict';
 
-    // Deixa a primeiro seção com a altura da janela
-    function bannerSetHeight() {
-        document.getElementById('projects').style.height = window.innerHeight + 'px';
-    }
-    bannerSetHeight();
-    window.onresize = () => { bannerSetHeight() };
-
     // Scroll suave
     function smoothScroll(el) {
         let target = document.querySelector(el.getAttribute('href'));
@@ -22,113 +15,103 @@ window.onload = function () {
     }
     document.querySelectorAll('#menu a').forEach(smoothScroll);
 
-
     // Botão flutuante que rola a página para o topo
-    let btnScrollToTop = document.getElementById('btn-scroll-to-top');
+    window.addEventListener('scroll', () => {
+        let btn = document.getElementById('btn-scroll-to-top');
+        let initialScrollCondition = window.scrollY < 200;
+        let finalScrollCondition = (window.scrollY + window.innerHeight + 50) >= (document.body.clientHeight);
 
-    window.onscroll = function () {
-        let firstSectionHeight = document.getElementById('projects').offsetHeight,
-            headerHeight = document.getElementById('header').offsetHeight,
-            topDistance = firstSectionHeight - headerHeight;
-
-        if (window.scrollY >= topDistance) {
-            btnScrollToTop.classList.remove('hidden');
-        } else {
-            btnScrollToTop.classList.add('hidden');
-        }
-    }
-    btnScrollToTop.onclick = () => {
-        window.scroll({
-            top: 0,
-            behavior: 'smooth'
+        btn.addEventListener('click', () => {
+            window.scroll({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
-    }
 
-    // Carouseis
+        btn.classList = initialScrollCondition || finalScrollCondition ? 'hidden' : '';
+    });
+
+    // Carousel de projetos
     tns({
         container: '#carousel-projects',
         items: 1,
         autoplay: true,
+        speed: 350,
+        autoplayTimeout: 3500,
         controls: false,
         navPosition: 'bottom',
         autoplayButton: false,
         mode: 'gallery'
     });
 
+    // Carousel de equipe
     if (window.innerWidth < 768) {
         tns({
             container: '#carousel-team',
             items: 1,
             autoplay: true,
+            speed: 350,
+            autoplayTimeout: 3500,
             controls: false,
             navPosition: 'bottom',
-            autoplayButton: false,
-            responsive: {
-                768: {
-                    items: 3
-                }
-
-            }
+            autoplayButton: false
         });
     }
 
+    // Animations
     lax.init();
-
-    // Add a driver that we use to control our animations
     lax.addDriver('scrollY', function () {
         return window.scrollY
     });
 
-    // Add animation bindings to elements
-    lax.addElements('#services svg', {
-        scrollY: {
-            scale: [
-                [0, 400],
-                [0.25, 1]
-            ],
-            opacity: [
-                [0, 400],
-                [0, 1]
-            ]
-        }
-    });
-
-    lax.addElements('#services .container .service:first-child h3', {
-        scrollY: {
-            translateX: [
-                [0, 400],
-                [-100, 0]
-            ]
-        }
-    });
-
-    lax.addElements('#services .container .service:last-child h3', {
-        scrollY: {
-            translateX: [
-                [0, 400],
-                [100, 0]
-            ]
-        }
-    });
-
-    lax.addElements('#services .container .service:first-child p', {
-        scrollY: {
-            translateX: [
-                [0, 450],
-                [-200, 0]
-            ]
-        }
-    });
-
-    lax.addElements('#services .container .service:last-child p', {
-        scrollY: {
-            translateX: [
-                [0, 450],
-                [200, 0]
-            ]
-        }
-    });
-
+    // As animações na seção Services são feitas apenas no desktop
+    let servicesOffsetTop = document.getElementById('services').getBoundingClientRect().top;
+    if (servicesOffsetTop > 450) {
+        lax.addElements('#services svg', {
+            scrollY: {
+                scale: [
+                    [0, 300],
+                    [0.25, 1]
+                ],
+                opacity: [
+                    [0, 300],
+                    [0, 1]
+                ]
+            }
+        });
+        lax.addElements('#services .container .service:first-child h3', {
+            scrollY: {
+                translateX: [
+                    [0, 300],
+                    [-100, 0]
+                ]
+            }
+        });
+        lax.addElements('#services .container .service:last-child h3', {
+            scrollY: {
+                translateX: [
+                    [0, 300],
+                    [100, 0]
+                ]
+            }
+        });
+        lax.addElements('#services .container .service:first-child p', {
+            scrollY: {
+                translateX: [
+                    [0, 350],
+                    [-200, 0]
+                ]
+            }
+        });
+        lax.addElements('#services .container .service:last-child p', {
+            scrollY: {
+                translateX: [
+                    [0, 350],
+                    [200, 0]
+                ]
+            }
+        });
+    }
     lax.addElements('label[for="contact-name"]', {
         scrollY: {
             translateX: [
@@ -137,7 +120,6 @@ window.onload = function () {
             ]
         }
     });
-
     lax.addElements('label[for="contact-email"]', {
         scrollY: {
             translateX: [
@@ -146,7 +128,6 @@ window.onload = function () {
             ]
         }
     });
-
     lax.addElements('label[for="contact-message"]', {
         scrollY: {
             translateX: [

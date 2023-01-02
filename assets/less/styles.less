@@ -6,6 +6,10 @@
 // Plugins
 @import url('./tiny-slider.less');
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -302,9 +306,16 @@ section {
             column-gap: 30px;
         }
     }
+
+    #btn-scroll-to-top {
+        display: flex;
+    }
 }
 
 @media (min-width: @breakpoint-md) {
+    body {
+        padding-top: 55px;
+    }
 
     .container {
         max-width: 720px;
@@ -331,10 +342,6 @@ section {
         img {
             width: 160px;
         }
-    }
-
-    #btn-scroll-to-top {
-        display: flex;
     }
 }
 

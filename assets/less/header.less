@@ -1,9 +1,4 @@
 #header {
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    right: 0;
     background-color: rgba(0, 0, 0, 0.85);
     padding: 15px 0;
     transition: @transition;
@@ -18,13 +13,23 @@
 #logo {
     color: #fff;
     text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 #menu {
     display: none;
 }
 
-@media (min-width: @breakpoint-sm) {
+@media (min-width: @breakpoint-md) {
+    
+    #header {
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
 
     #menu {
         display: block;
